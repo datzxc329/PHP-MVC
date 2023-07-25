@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<div
+		class="hidden-xs col-sm-4 col-md-3"><!-- 	<div class="boxleft">
+									            <div class="titboxl">
+									            </div>
+									            <div class="ctboxleft">
+									                
+									            </div>
+									        </div> -->
+	</div>
+	<div class="col-xs-12 col-sm-8 col-md-9">
+		<div class="slider-wrapper theme-default">
+			<div
+				id="slider" class="nivoSlider">
+				<!-- class="nivoSlider" -->
+				<a href=""><img src="images/slide1.jpg" alt=""/></a>
+				<a href=""><img src="images/slide2.jpg" alt=""/></a>
+			</div>
+		</div>
+	</div>
+	<div
+		class="banner clearfix"><!-- <div class="col-xs-12 col-sm-6">
+									                            <img src="images/banner1.png" alt="">
+									                        </div>
+									                        <div class="col-xs-12 col-sm-6">
+									                            <img src="images/banner2.png" alt="">
+									                        </div> -->
+	</div>
+	<div id="home">
+		<div class="container-fluid">
+			<section id="featured">
+
+
+				<nav aria-label="breadcrumb" id="crumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="/">TRANG CHỦ</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">{{ tam }}</li>
+					</ol>
+				</nav>
+
+
+			</section>
+			<section id="main">
+
+				<script>
+					document.addeventlistener("load", fff());
+function fff() {
+document.getElementById("navbarcroll").style.display = "block";
+}
+				</script>
+
+
+				<div id="maincontent" class="col-xs-12 col-sm-8 col-md-12 ">
+
+					<div class="text-left">
+						<form action="" method="get">
+							<label>TÌM KIẾM NÂNG CAO:</label>
+							<input type="text" class="timnc" name="key" value="" placeholder="Nhập sản phẩm" id="tennc">
+							<span>GIÁ:
+							</span>
+							<input type="text" name="giatu" placeholder="Giá từ" class="timnc" id="giatu" onkeyup="kiemtraso()">
+							<input type="text" name="giaden" placeholder="Giá đến" class="timnc" id="giaden" onkeyup="kiemtrasoden()">
+							<span>LOẠI:
+							</span>
+							<select name="idL" class="timnc" id="loai">
+								<option value="0">TẤT CẢ</option>
+								<option value="1">Iphone</option>
+								<option value="2">Samsung</option>
+								<option value="3">Nokia</option>
+								<option value="4">Xiaomi</option>
+								<option value="5">OPPO</option>
+								<option value="6">Huawei</option>
+								{% for cat in category %}
+									<li>
+										<a href='category?id={{ cat.idLSP }}'>{{ cat.tenloai }}</a>
+									</li>
+								{% endfor %} 	
+
+							</select>
+							<button type="button" class="btn btn-info" onclick="timkiem()" name="xem" value="search" id="timkiemnc">Tìm kiếm</button>
+						</form>
+					</div>
+					<div class="boxmain">
+						<div class="tit-boxmain">
+							<h3>
+								<span>Sản phẩm mới</span>
+							</h3>
+						</div>
+						<div class="ct-boxmain row m0">
+                                {% set i = 0 %}
+								{% for row in product1 %}
+									{% if i < 8 %}
+										<div class="col-xs-6 col-sm-4 col-md-3 p5">
+											<div class="boxsp">
+												<div class="imgsp">
+													<a href="productdetail?id={{ row.idSP }}"><img class="imgproduct" src="admin/update/{{ row.hinhanh }}"></a>
+													<div class="img-label">
+														<img src="images/hot.png">
+													</div>
+												</div>
+												<div class="namesp">
+													<a href="#">{{ row.tensp }}</a>
+												</div>
+												<div class="pricesp">{{ row.gia|number_format(0, ',', '.') }}
+													VNĐ</div>
+												<div class="button-hd">
+													<a href="javascript:void(0)" onclick="themgiohang({{ row.idSP }})">
+														<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+													</a>
+													<a href="productdetail?id={{ row.idSP }}">
+														<i class="fa fa-eye" aria-hidden="true"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+									{% set i = i + 1 %}
+								{% endfor %}
+						</div>
+
+					</div>
+					<div class="boxmain">
+						<div class="tit-boxmain">
+							<h3>
+								<span>Sản phẩm hot</span>
+							</h3>
+						</div>
+						{% set i = 0 %}
+								{% for row in product1 %}
+								{% if i > 8 and i < 21 %}
+									<div class="col-xs-6 col-sm-4 col-md-3 p5">
+										<div class="boxsp">
+											<div class="imgsp">
+												<a href="productdetail?id={{ row.idSP }}"><img class="imgproduct" src="admin/update/{{ row.hinhanh }}"></a>
+												<div class="img-label">
+													<img src="images/hot.png">
+												</div>
+											</div>
+											<div class="namesp">
+												<a href="#">{{ row.tensp }}</a>
+											</div>
+											<div class="pricesp">{{ row.gia|number_format(0, ',', '.') }}
+												VNĐ</div>
+											<div class="button-hd">
+												<a href="javascript:void(0)" onclick="themgiohang({{ row.idSP }})">
+													<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+												</a>
+												<a href="productdetail?id={{ row.idSP }}">
+													<i class="fa fa-eye" aria-hidden="true"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+								{% set i = i + 1 %}
+							{% endfor %}
+					</div>
+			</div>
+
+
+		</section>
+	</div>
+</div>{% endblock %}
